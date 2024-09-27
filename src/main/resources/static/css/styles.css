@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F1F1F1;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  color: #363636;
+}
+
+.container {
+  margin: 20px auto;
+  padding: 20px;
+  background: #FFFFFF;
+  box-shadow: 3px 3px 15px #d5d5d5;
+}
+
+h1 {
+  color: #243446;
+  font-size: 2.25em;
+}
+
+.table th {
+  background-color: #000000;
+  color: #FFFFFF;
+  text-align: left;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+a {
+  color: #4a5d75;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #369;
+  text-decoration: underline;
+}
+
+.alert {
+  margin-bottom: 20px;
+}

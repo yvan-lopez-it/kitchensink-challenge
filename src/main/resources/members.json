@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "name": "Juan Ramirez",
+    "email": "juan.ramirez@mail.com",
+    "phoneNumber": "990123456"
+  },
+  {
+    "id": "2",
+    "name": "Carlos Vidal",
+    "email": "carlos.vidal@mail.com",
+    "phoneNumber": "988123478"
+  },
+  {
+    "id": "3",
+    "name": "Mario Gomez",
+    "email": "mario.gomezl@mail.com",
+    "phoneNumber": "995123444"
+  },
+  {
+    "id": "4",
+    "name": "Jose Diez",
+    "email": "jose.diez@mail.com",
+    "phoneNumber": "930123454"
+  },
+  {
+    "id": "5",
+    "name": "Maria Torres",
+    "email": "maria.torres@mail.com",
+    "phoneNumber": "920123451"
+  }
+]
