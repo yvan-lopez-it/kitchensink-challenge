@@ -1,4 +1,23 @@
 $(document).ready(function () {
+  // Configura toastr
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": true,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  };
+
   $("#memberForm").submit(function (event) {
     event.preventDefault(); // Previene el comportamiento por defecto del formulario
 
@@ -9,25 +28,22 @@ $(document).ready(function () {
       phoneNumber: $("#phoneNumber").val()
     };
 
-    // Validar el nombre (no debe contener números)
-    const namePattern = /^\D*$/;
-    if (!namePattern.test(memberData.name) || memberData.name.length > 25) {
-      alert(
-          "Name must not contain numbers and should be between 1 and 25 characters.");
+    // Validar el nombre (no debe contener números y debe tener entre 1 y 25 caracteres)
+    if (!validator.isAlpha(memberData.name.replace(/\s/g, ''), 'en-US')
+        || !validator.isLength(memberData.name, {min: 1, max: 25})) {
+      toastr.error("The name must contain only letters and should be between 1 and 25 characters.");
       return;
     }
 
     // Validar el número de teléfono (debe ser de 10 a 12 dígitos)
-    const phonePattern = /^\d{10,12}$/;
-    if (!phonePattern.test(memberData.phoneNumber)) {
-      alert("Phone number must be between 10 and 12 digits.");
+    if (!validator.isLength(memberData.phoneNumber, {min: 10, max: 12})) {
+      toastr.error("Phone number must be valid and contain between 10 and 12 digits.");
       return;
     }
 
     // Validar el correo electrónico
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(memberData.email)) {
-      alert("Please enter a valid email.");
+    if (!validator.isEmail(memberData.email)) {
+      toastr.error("Please enter a valid email address.");
       return;
     }
 
@@ -44,17 +60,17 @@ $(document).ready(function () {
                     <td>${response.name}</td>
                     <td>${response.email}</td>
                     <td>${response.phoneNumber}</td>
+                    <td><a href="/kitchensink/rest/members/${response.id}">/kitchensink/rest/members/${response.id}</a></td>
                 </tr>`;
         $("#membersList").append(newRow);
-        $("#message").html(
-            '<div class="alert alert-success">Registered!</div>');
+
+        toastr.success("Registered successfully!");
 
         // Limpiar el formulario
         $("#memberForm")[0].reset();
       },
       error: function () {
-        $("#message").html(
-            '<div class="alert alert-danger">Error registering member.</div>');
+        toastr.error("Error registering member.");
       }
     });
   });
