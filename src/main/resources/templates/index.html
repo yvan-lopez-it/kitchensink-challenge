@@ -46,6 +46,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone #</th>
+            <th>REST URL</th>
         </tr>
         </thead>
         <tbody id="membersList">
@@ -54,10 +55,21 @@
             <td th:text="${member.name}"></td>
             <td th:text="${member.email}"></td>
             <td th:text="${member.phoneNumber}"></td>
+            <td>
+                <a th:href="@{/kitchensink/rest/members/{id}(id=${member.id})}" th:text="'/kitchensink/rest/members/' + ${member.id}"></a>
+            </td>
         </tr>
         </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5">
+                <a th:href="@{/kitchensink/rest/members}" th:text="'REST URL for all members: /kitchensink/rest/members'"></a>
+            </td>
+        </tr>
+        </tfoot>
     </table>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
