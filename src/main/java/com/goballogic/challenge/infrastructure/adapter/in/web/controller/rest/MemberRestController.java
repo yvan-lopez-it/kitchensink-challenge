@@ -3,14 +3,13 @@ package com.goballogic.challenge.infrastructure.adapter.in.web.controller.rest;
 import com.goballogic.challenge.application.port.in.MemberUseCase;
 import com.goballogic.challenge.infrastructure.adapter.in.dto.MemberDTO;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/kitchensink")
+@RequestMapping("/kitchensink/rest")
 public class MemberRestController {
 
     private final MemberUseCase memberUseCase;

@@ -13,15 +13,26 @@
     <form id="memberForm">
         <div class="mb-3">
             <label for="name" class="form-label">Name:</label>
-            <input type="text" id="name" name="name" class="form-control" required>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Write your name"
+                   pattern="\D*" maxlength="25" required>
+            <div class="invalid-feedback">
+                Name must not contain numbers and should be between 1 and 25 characters.
+            </div>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" id="email" name="email" class="form-control" required>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Write your email" required>
+            <div class="invalid-feedback">
+                Please enter a valid email.
+            </div>
         </div>
         <div class="mb-3">
             <label for="phoneNumber" class="form-label">Phone #:</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required>
+            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Write your phone number - 10 to 12 digits"
+                   pattern="\d{10,12}" required>
+            <div class="invalid-feedback">
+                Phone number must be between 10 and 12 digits.
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
         <div id="successMessage" class="mt-3" style="display:none; color: green;">Registered!</div>
