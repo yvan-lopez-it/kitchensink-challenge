@@ -3,6 +3,7 @@ package com.goballogic.challenge.infrastructure.adapter.in.web.controller.rest;
 import com.goballogic.challenge.application.port.in.MemberUseCase;
 import com.goballogic.challenge.infrastructure.adapter.in.dto.MemberDTO;
 import java.util.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,14 +24,13 @@ public class MemberRestController {
 
     @PostMapping("/register")
     public ResponseEntity<MemberDTO> registerMember(@RequestBody MemberDTO memberDTO) {
-        MemberDTO savedMember = memberUseCase.registerMember(memberDTO);
-        return ResponseEntity.ok(savedMember);
+        return new ResponseEntity<>(memberUseCase.registerMember(memberDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/members/{id}")
     public ResponseEntity<MemberDTO> getMemberById(@PathVariable String id) {
-        MemberDTO member = memberUseCase.getMemberById(id).orElse(null);
-        if (member == null){
+        MemberDTO member = memberUseCase.getMemberById(id);
+        if (member == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(member);

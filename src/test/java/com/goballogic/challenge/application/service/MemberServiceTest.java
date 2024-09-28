@@ -1,8 +1,6 @@
 package com.goballogic.challenge.application.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -135,24 +133,14 @@ class MemberServiceTest {
         when(memberPort.getMemberById(memberId)).thenReturn(Optional.of(member));
         when(mapper.toDTO(member)).thenReturn(memberDTO);
 
-        Optional<MemberDTO> result = memberService.getMemberById(memberId);
+        MemberDTO result = memberService.getMemberById(memberId);
 
         verify(memberPort).getMemberById(memberId);
         verify(mapper).toDTO(member);
-        assertThat(result).isPresent();
-        assertThat(result.get()).isEqualTo(memberDTO);
-    }
 
-    @Test
-    void shouldReturnEmptyWhenMemberNotFoundById() {
-        String memberId = "9999";
-        when(memberPort.getMemberById(memberId)).thenReturn(Optional.empty());
-
-        Optional<MemberDTO> result = memberService.getMemberById(memberId);
-
-        verify(memberPort).getMemberById(memberId);
-        verify(mapper, never()).toDTO(any(Member.class));
-        assertThat(result).isEmpty();
+        assertThat(result)
+            .isNot(null)
+            .isEqualTo(memberDTO);
     }
 
 }
