@@ -1,5 +1,6 @@
 package com.goballogic.challenge.application.service;
 
+import com.goballogic.challenge.application.exceptions.DuplicateEmailException;
 import com.goballogic.challenge.application.port.in.MemberUseCase;
 import com.goballogic.challenge.application.port.out.MemberPort;
 import com.goballogic.challenge.domain.model.Member;
@@ -30,9 +31,20 @@ public class MemberService implements MemberUseCase {
     }
 
     @Override
+    public List<MemberDTO> findAllOrderedByName() {
+        List<Member> memberList = memberPort.findAllOrderedByName();
+        return mapper.toDTOList(memberList);
+    }
+
+    @Override
     @Transactional
-    public MemberDTO registerMember(MemberDTO memberDTO) {
+    public MemberDTO registerMember(MemberDTO memberDTO) throws DuplicateEmailException {
         Member member = mapper.toDomain(memberDTO);
+        Optional<Member> memberOptional = memberPort.findByEmail(member.getEmail());
+        if (memberOptional.isPresent()){
+            throw new DuplicateEmailException("Error. The email is already registered.");
+        }
+
         Member savedMember = memberPort.registerMember(member);
         return mapper.toDTO(savedMember);
     }
@@ -41,6 +53,13 @@ public class MemberService implements MemberUseCase {
     @Transactional(readOnly = true)
     public Optional<MemberDTO> getMemberById(String id) {
         Optional<Member> memberOptional = memberPort.getMemberById(id);
+        return memberOptional.map(mapper::toDTO);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<MemberDTO> findByEmail(String email) {
+        Optional<Member> memberOptional = memberPort.findByEmail(email);
         return memberOptional.map(mapper::toDTO);
     }
 }

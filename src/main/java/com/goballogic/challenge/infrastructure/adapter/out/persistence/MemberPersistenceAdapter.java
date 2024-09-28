@@ -27,6 +27,12 @@ public class MemberPersistenceAdapter implements MemberPort {
     }
 
     @Override
+    public List<Member> findAllOrderedByName() {
+        List<MemberEntity> memberEntityList = repository.findAllByOrderByNameAsc();
+        return mapper.toDomainList(memberEntityList);
+    }
+
+    @Override
     public Member registerMember(Member member) {
         MemberEntity memberEntitySaved = repository.save(mapper.toEntity(member));
         return mapper.toDomain(memberEntitySaved);
@@ -35,6 +41,12 @@ public class MemberPersistenceAdapter implements MemberPort {
     @Override
     public Optional<Member> getMemberById(String id) {
         Optional<MemberEntity> memberEntityOptional = repository.findById(id);
+        return memberEntityOptional.map(mapper::toDomain);
+    }
+
+    @Override
+    public Optional<Member> findByEmail(String email) {
+        Optional<MemberEntity> memberEntityOptional = repository.findMemberEntityByEmail(email);
         return memberEntityOptional.map(mapper::toDomain);
     }
 }

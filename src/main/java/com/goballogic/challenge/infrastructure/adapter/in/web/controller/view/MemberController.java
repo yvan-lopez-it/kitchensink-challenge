@@ -20,7 +20,7 @@ public class MemberController {
 
     @GetMapping({"", "/"})
     public String showMembers(Model model) {
-        List<MemberDTO> members = memberUseCase.getAllMembers();
+        List<MemberDTO> members = memberUseCase.findAllOrderedByName();
         model.addAttribute("members", members);
         return "index";
     }

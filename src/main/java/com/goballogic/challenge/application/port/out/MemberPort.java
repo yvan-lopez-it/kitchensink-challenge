@@ -8,8 +8,12 @@ public interface MemberPort {
 
     List<Member> getAllMembers();
 
+    List<Member> findAllOrderedByName();
+
     Member registerMember(Member member);
 
     Optional<Member> getMemberById(String id);
+
+    Optional<Member> findByEmail(String email);
 
 }

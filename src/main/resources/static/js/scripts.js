@@ -69,8 +69,12 @@ $(document).ready(function () {
         // Limpiar el formulario
         $("#memberForm")[0].reset();
       },
-      error: function () {
-        toastr.error("Error registering member.");
+      error: function (xhr) {
+        if (xhr.status === 409) {
+          toastr.error('The email already exists. Please use a different email.');
+        } else {
+          toastr.error('Error registering member.');
+        }
       }
     });
   });
