@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MemberService implements MemberUseCase {
 
-    private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MemberService.class);
 
     private final MemberPort memberPort;
     private final MemberMapper mapper;
@@ -31,40 +31,40 @@ public class MemberService implements MemberUseCase {
     @Override
     @Transactional(readOnly = true)
     public List<MemberDTO> getAllMembers() {
-        logger.info("Fetching all members");
+        LOGGER.info("Fetching all members");
         List<Member> memberList = memberPort.getAllMembers();
-        logger.debug("Retrieved {} members", memberList.size());
+        LOGGER.debug("Retrieved {} members", memberList.size());
         return mapper.toDTOList(memberList);
     }
 
     @Override
     public List<MemberDTO> findAllOrderedByName() {
-        logger.info("Fetching members ordered by name");
+        LOGGER.info("Fetching members ordered by name");
         List<Member> memberList = memberPort.findAllOrderedByName();
-        logger.debug("Retrieved {} members ordered by name", memberList.size());
+        LOGGER.debug("Retrieved {} members ordered by name", memberList.size());
         return mapper.toDTOList(memberList);
     }
 
     @Override
     @Transactional
     public MemberDTO registerMember(MemberDTO memberDTO) throws DuplicateEmailException {
-        logger.info("Registering new member with email: {}", memberDTO.getEmail());
+        LOGGER.info("Registering new member with email: {}", memberDTO.getEmail());
         Member member = mapper.toDomain(memberDTO);
         Optional<Member> memberOptional = memberPort.findByEmail(member.getEmail());
         if (memberOptional.isPresent()) {
-            logger.error("Email already registered: {}", member.getEmail());
+            LOGGER.error("Email already registered: {}", member.getEmail());
             throw new DuplicateEmailException("Error. The email is already registered.");
         }
 
         Member savedMember = memberPort.registerMember(member);
-        logger.info("Successfully registered member with email: {}", savedMember.getEmail());
+        LOGGER.info("Successfully registered member with email: {}", savedMember.getEmail());
         return mapper.toDTO(savedMember);
     }
 
     @Override
     @Transactional(readOnly = true)
     public MemberDTO getMemberById(String id) {
-        logger.info("Fetching member by ID: {}", id);
+        LOGGER.info("Fetching member by ID: {}", id);
         Member member = memberPort.getMemberById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Member with id: " + id + " not found"));
 
@@ -76,7 +76,7 @@ public class MemberService implements MemberUseCase {
     @Override
     @Transactional(readOnly = true)
     public MemberDTO findByEmail(String email) {
-        logger.info("Fetching member by email: {}", email);
+        LOGGER.info("Fetching member by email: {}", email);
         Member member = memberPort.findByEmail(email)
             .orElseThrow(() -> new ResourceNotFoundException("Member with email: [" + email + "] not found"));
 
@@ -86,7 +86,7 @@ public class MemberService implements MemberUseCase {
     }
 
     private static void getDebug(String member) {
-        logger.debug("Member found: {}", member);
+        LOGGER.debug("Member found: {}", member);
     }
 
 }
