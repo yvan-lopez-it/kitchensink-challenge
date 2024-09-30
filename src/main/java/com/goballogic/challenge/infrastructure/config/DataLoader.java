@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger(DataLoader.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataLoader.class);
 
     private final MemberRepository memberRepository;
     private final MemberMapper memberMapper;
@@ -36,6 +36,6 @@ public class DataLoader implements CommandLineRunner {
         List<Member> members = objectMapper.readValue(inputStream, new TypeReference<>() {});
         memberRepository.saveAll(memberMapper.toEntityList(members));
 
-        logger.info("Test data loaded successfully.");
+        LOGGER.info("Test data loaded successfully.");
     }
 }
