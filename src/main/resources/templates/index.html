@@ -54,14 +54,14 @@
             <td th:text="${member.email}"></td>
             <td th:text="${member.phoneNumber}"></td>
             <td>
-                <a th:href="@{/kitchensink/rest/members/{id}(id=${member.id})}" th:text="'/kitchensink/rest/members/' + ${member.id}"></a>
+                <a th:href="@{/rest/members/{id}(id=${member.id})}" th:text="'/rest/members/' + ${member.id}"></a>
             </td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
             <td colspan="5">
-                <a th:href="@{/kitchensink/rest/members}" th:text="'REST URL for all members: /kitchensink/rest/members'"></a>
+                <a th:href="@{/rest/members}" th:text="'REST URL for all members: /rest/members'"></a>
             </td>
         </tr>
         </tfoot>

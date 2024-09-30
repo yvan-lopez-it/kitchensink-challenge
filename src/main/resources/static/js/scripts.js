@@ -50,7 +50,7 @@ $(document).ready(function () {
     // Si pasa las validaciones, enviar el formulario
     $.ajax({
       type: "POST",
-      url: "/kitchensink/rest/register",
+      url: "/rest/register",
       contentType: "application/json",
       data: JSON.stringify(memberData), // Enviar los datos en formato JSON
       success: function (response) {
@@ -60,7 +60,7 @@ $(document).ready(function () {
                     <td>${response.name}</td>
                     <td>${response.email}</td>
                     <td>${response.phoneNumber}</td>
-                    <td><a href="/kitchensink/rest/members/${response.id}">/kitchensink/rest/members/${response.id}</a></td>
+                    <td><a href="/rest/members/${response.id}">/rest/members/${response.id}</a></td>
                 </tr>`;
         $("#membersList").append(newRow);
 

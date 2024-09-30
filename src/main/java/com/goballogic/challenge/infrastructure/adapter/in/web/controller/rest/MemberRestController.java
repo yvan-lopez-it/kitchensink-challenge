@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/kitchensink/rest")
+@RequestMapping("/rest")
 public class MemberRestController {
 
     private final MemberUseCase memberUseCase;

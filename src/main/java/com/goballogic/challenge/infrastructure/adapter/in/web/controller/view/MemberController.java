@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/kitchensink")
+@RequestMapping
 public class MemberController {
 
     private final MemberUseCase memberUseCase;
@@ -18,7 +18,7 @@ public class MemberController {
         this.memberUseCase = memberUseCase;
     }
 
-    @GetMapping({"", "/"})
+    @GetMapping
     public String showMembers(Model model) {
         List<MemberDTO> members = memberUseCase.findAllOrderedByName();
         model.addAttribute("members", members);
