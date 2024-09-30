@@ -83,9 +83,7 @@ class MemberServiceTest {
         when(mapper.toDomain(memberDTO)).thenReturn(member);
         when(memberPort.findByEmail(member.getEmail())).thenReturn(Optional.of(member));
 
-        Exception exception = assertThrows(DuplicateEmailException.class, () -> {
-            memberService.registerMember(memberDTO);
-        });
+        Exception exception = assertThrows(DuplicateEmailException.class, () -> memberService.registerMember(memberDTO));
 
         assertEquals("Error. The email is already registered.", exception.getMessage());
         verify(memberPort).findByEmail(member.getEmail());
@@ -108,9 +106,7 @@ class MemberServiceTest {
     void testGetMemberByIdNotFound() {
         when(memberPort.getMemberById("1")).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(ResourceNotFoundException.class, () -> {
-            memberService.getMemberById("1");
-        });
+        Exception exception = assertThrows(ResourceNotFoundException.class, () -> memberService.getMemberById("1"));
 
         assertEquals("Member with id: 1 not found", exception.getMessage());
     }
@@ -131,9 +127,7 @@ class MemberServiceTest {
     void testFindByEmailNotFound() {
         when(memberPort.findByEmail("miguel.grau@example.com")).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(ResourceNotFoundException.class, () -> {
-            memberService.findByEmail("miguel.grau@example.com");
-        });
+        Exception exception = assertThrows(ResourceNotFoundException.class, () -> memberService.findByEmail("miguel.grau@example.com"));
 
         assertEquals("Member with email: [miguel.grau@example.com] not found", exception.getMessage());
     }
