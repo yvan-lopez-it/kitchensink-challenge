@@ -17,7 +17,6 @@ class MemberMapperTest {
 
     @BeforeEach
     void setUp() {
-        // Instanciamos el mapper
         memberMapper = Mappers.getMapper(MemberMapper.class);
     }
 
