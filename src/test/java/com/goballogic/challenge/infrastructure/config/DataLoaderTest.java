@@ -85,8 +85,8 @@ class DataLoaderTest {
             .isInstanceOf(RuntimeException.class)
             .hasMessage("Failed to read JSON");
 
-        verify(memberRepository).deleteAll();  // Verifica que se eliminan los registros previos
-        verify(memberRepository, never()).saveAll(anyList());  // Verifica que no se guardan registros si ocurre un error
+        verify(memberRepository).deleteAll();
+        verify(memberRepository, never()).saveAll(anyList());
     }
 
 }
