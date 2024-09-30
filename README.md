@@ -76,22 +76,12 @@ For larger projects, structure the tasks as follows:
 - **Create Dockerfile**:
   Write a `Dockerfile` to package the Spring Boot application.
 
-- **Build the Docker Image**: Use Docker commands to build the image. I.e.: `docker build -t kitchensink .`
+- **Build the Docker Image**: Use Docker commands to build the image. I.e.: `docker build -t kitchensink . -f .\Dockerfile`
+- **Add a tag to Docker Image**: Use Docker commands to add a tag. I.e.: `docker tag kitchensink yvancho/kitchensink:latest`
+- **Create a repository in Docker Hub**: To upload the image. 
+- **Push the image to Docker Hub**: Use Docker commands to upload the image. I.e.: `docker push yvancho/kitchensink:latest`
 
-### 8. GitHub Actions Automation
-After pushing the project to GitHub, it is recommended to automate the build and deployment process using GitHub Actions.
-
-1. **GitHub Actions workflow that automates**:
-
-   - The build and creation of the Docker image.
-   - The upload of the image to DockerHub.
-   - The deployment of the Docker image to AWS ECS.
-
-2. **DockerHub and AWS ECS**:
-   - The  workflow builds the Docker image, pushes it to DockerHub, and then deploys the image to an existing AWS ECS cluster.
-   - Use GitHub Secrets for DOCKER_USERNAME, DOCKER_PASSWORD, and AWS credentials to authenticate the process.
-
-### 9. Deployment to AWS ECS
+### 8. Deployment to AWS ECS
 - **Setup AWS ECS**:
    - Create a ECS cluster on AWS.
    - Configure task definitions and services to run the Docker container.
