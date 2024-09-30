@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   mongodb:
-    image: 'mongodb/mongodb-community-server:latest'
+    image: 'mongo:latest'
     environment:
       MONGO_INITDB_DATABASE: kitchensink
       MONGO_INITDB_ROOT_USERNAME: root
@@ -22,8 +22,8 @@ services:
       - "9090:9090"
     environment:
       PORT: 9090
-      DB_HOST: mongodb
-      DB_PORT: 27017
+      DB_HOST: mongodb:27017
+#      DB_PORT: 27017
       DB_DATABASE: kitchensink
       DB_USERNAME: root
       DB_PASSWORD: password

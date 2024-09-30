@@ -2,6 +2,11 @@
 
 This repository contains the migrated KitchenSink application from a Jakarta EE 10 compliant application to a Spring Boot application leveraging a hexagonal architecture and MongoDB.
 
+- URL Application deployed in AWS: http://52.90.242.207:9090/
+
+![img.png](img.png)
+
+
 ## Migration Overview
 
 The KitchenSink application has been built using several Jakarta EE technologies, including JSF, CDI, JAX-RS, EJB, JPA, and Bean Validation. This document outlines the migration process, including the technologies used, architecture changes, and deployment strategies.
@@ -88,5 +93,3 @@ For larger projects, structure the tasks as follows:
    - Ensure proper security groups, load balancer (if needed), and auto-scaling configurations.
 - **Application Accessibility**:
    - Expose the application using an Application Load Balancer (ALB) for internet access.
-
-![img.png](info/img.png)
