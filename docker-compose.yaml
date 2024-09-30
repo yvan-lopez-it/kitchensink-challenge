@@ -9,8 +9,33 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
     ports:
       - '27017:27017'
-    healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    volumes:
+      - mongodb-data:/data/db
+    restart: always
+    networks:
+      - ks-net
+
+  kitchensink-app:
+    container_name: kitchensink-app
+    image: yvancho/kitchensink:latest
+    ports:
+      - "9090:9090"
+    environment:
+      PORT: 9090
+      DB_HOST: mongodb
+      DB_PORT: 27017
+      DB_DATABASE: kitchensink
+      DB_USERNAME: root
+      DB_PASSWORD: password
+    depends_on:
+      - mongodb
+    networks:
+      - ks-net
+
+volumes:
+  mongodb-data:
+    name: mongodb-data
+
+networks:
+  ks-net:
+    name: ks-net

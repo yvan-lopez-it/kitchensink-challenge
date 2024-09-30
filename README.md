@@ -76,7 +76,7 @@ For larger projects, structure the tasks as follows:
 - **Create Dockerfile**:
   Write a `Dockerfile` to package the Spring Boot application.
 
-- **Build the Docker Image**: Use Docker commands to build the image. I.e.: `docker build -t kitchensink-app .`
+- **Build the Docker Image**: Use Docker commands to build the image. I.e.: `docker build -t kitchensink .`
 
 ### 8. GitHub Actions Automation
 After pushing the project to GitHub, it is recommended to automate the build and deployment process using GitHub Actions.
@@ -98,3 +98,5 @@ After pushing the project to GitHub, it is recommended to automate the build and
    - Ensure proper security groups, load balancer (if needed), and auto-scaling configurations.
 - **Application Accessibility**:
    - Expose the application using an Application Load Balancer (ALB) for internet access.
+
+![img.png](info/img.png)
