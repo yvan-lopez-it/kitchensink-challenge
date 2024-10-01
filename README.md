@@ -2,7 +2,7 @@
 
 This repository contains the migrated KitchenSink application from a Jakarta EE 10 compliant application to a Spring Boot application leveraging a hexagonal architecture and MongoDB.
 
-- URL Application deployed in AWS: http://54.82.228.62:9090/
+- URL Application deployed in AWS: http://kitchensink-loadbalancer-kjs3d1f-673959686.us-east-1.elb.amazonaws.com/
 
 ![img.png](img.png)
 
@@ -50,7 +50,7 @@ The KitchenSink application has been built using several Jakarta EE technologies
 - Transition JAX-RS endpoints to Spring controllers with `@RestController` and `@RequestMapping`.
 
 #### Step 5: Migrate JPA and Validation
-- Ensure JPA entities and repositories are correctly configured with Spring Data MongoDB.
+- Ensure JPA entities and repositories are correctly configured with Spring Data JPA.
 - Maintain Bean Validation annotations for data integrity.
 
 #### Step 6: MongoDB Configuration (Stretch Goal)
