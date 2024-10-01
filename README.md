@@ -58,16 +58,12 @@ The KitchenSink application has been built using several Jakarta EE technologies
     - Set up MongoDB access and adjust classes interacting with the database.
     - Transform JPA entities to MongoDB documents using `@Document`.
 
-### 4. Create GitHub Repository
-- GitHub repository for the migrated project is: https://github.com/yvan-lopez-it/kitchensink-challenge
-- Document the cloning, building, and running processes in the `README.md`.
-
-### 5. Deployment Strategies
+### 4. Deployment Strategies
 
 - **Local Deployment**: Use `mvn clean install` or `mvn clean package` then `mvn spring-boot:run` to run the application locally.
 - **Cloud Deployment**: Consider using AWS services like Elastic Beanstalk or Docker containers on AWS ECS.
 
-### 6. Task Structuring
+### 5. Task Structuring
 For larger projects, structure the tasks as follows:
 1. **Base Infrastructure Migration (Spring Boot Setup)**
 2. **Component Migration (Frontend, Business Logic, Persistence)**
@@ -76,7 +72,7 @@ For larger projects, structure the tasks as follows:
 5. **Functional Testing**
 6. **Documentation and Deployment**
 
-### 7. Dockerization
+### 6. Dockerization
 
 - **Create Dockerfile**:
   Write a `Dockerfile` to package the Spring Boot application.
@@ -85,8 +81,15 @@ For larger projects, structure the tasks as follows:
 - **Add a tag to Docker Image**: Use Docker commands to add a tag. I.e.: `docker tag kitchensink yvancho/kitchensink:latest`
 - **Create a repository in Docker Hub**: To upload the image. 
 - **Push the image to Docker Hub**: Use Docker commands to upload the image. I.e.: `docker push yvancho/kitchensink:latest`
+![img_2.png](img_2.png)
 
-### 8. Deployment to AWS ECS
+    ### 6.1. Using GitHub Actions:
+    - When the repository is updated, the GitHub Actions pipeline is immediately executed.
+    - It is automated. It builds, runs, and publishes the image to DockerHub.
+    - The file path is .github/workflows/pipelines-master.yaml
+![img_1.png](img_1.png)
+
+### 7. Deployment to AWS ECS
 - **Setup AWS ECS**:
    - Create a ECS cluster on AWS.
    - Configure task definitions and services to run the Docker container.
