@@ -22,6 +22,10 @@ jobs:
           java-version: '21'
           distribution: 'corretto'
 
+      # Grant execution permissions to the Maven wrapper
+      - name: Grant execution permission for Maven wrapper
+        run: chmod +x ./mvnw
+
       # Build Maven package (Skipping Tests as per Dockerfile logic)
       - name: Build with Maven (without tests)
         run: |
