@@ -2,7 +2,7 @@
 
 This repository contains the migrated KitchenSink application from a Jakarta EE 10 compliant application to a Spring Boot application leveraging a hexagonal architecture and MongoDB.
 
-- URL Application deployed in AWS: http://52.90.242.207:9090/
+- URL Application deployed in AWS: http://54.82.228.62:9090/
 
 ![img.png](img.png)
 
