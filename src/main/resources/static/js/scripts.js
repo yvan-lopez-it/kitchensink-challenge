@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // Configura toastr
+
   toastr.options = {
     "closeButton": true,
     "debug": false,
@@ -19,43 +19,43 @@ $(document).ready(function () {
   };
 
   $("#memberForm").submit(function (event) {
-    event.preventDefault(); // Previene el comportamiento por defecto del formulario
+    event.preventDefault();
 
-    // Obtener los valores del formulario
     const memberData = {
       name: $("#name").val(),
       email: $("#email").val(),
       phoneNumber: $("#phoneNumber").val()
     };
 
-    // Validar el nombre (no debe contener números y debe tener entre 1 y 25 caracteres)
+    // Validate the name (must not contain numbers and must be between 1 and 25 characters)
     if (!validator.isAlpha(memberData.name.replace(/\s/g, ''), 'en-US')
         || !validator.isLength(memberData.name, {min: 1, max: 25})) {
       toastr.error("The name must contain only letters and should be between 1 and 25 characters.");
       return;
     }
 
-    // Validar el número de teléfono (debe ser de 10 a 12 dígitos)
+    // Validate the phone number (must be 10 to 12 digits)
     if (!validator.isLength(memberData.phoneNumber, {min: 10, max: 12})) {
       toastr.error("Phone number must be valid and contain between 10 and 12 digits.");
       return;
     }
 
-    // Validar el correo electrónico
+    // Validate email
     if (!validator.isEmail(memberData.email)) {
       toastr.error("Please enter a valid email address.");
       return;
     }
 
-    // Si pasa las validaciones, enviar el formulario
+    // If validations pass, send the form
     $.ajax({
       type: "POST",
       url: "/rest/register",
       contentType: "application/json",
-      data: JSON.stringify(memberData), // Enviar los datos en formato JSON
+      data: JSON.stringify(memberData),
       success: function (response) {
-        // Agregar el nuevo miembro a la lista sin recargar
-        const newRow = `<tr>
+        // Add the new member to the list without reloading
+        const newRow =
+                `<tr>
                     <td>${response.id}</td>
                     <td>${response.name}</td>
                     <td>${response.email}</td>
@@ -66,7 +66,7 @@ $(document).ready(function () {
 
         toastr.success("Registered successfully!");
 
-        // Limpiar el formulario
+        // Clear the form
         $("#memberForm")[0].reset();
       },
       error: function (xhr) {
